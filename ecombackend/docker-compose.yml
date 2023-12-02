@@ -1,0 +1,36 @@
+version: '3'
+services:
+  db:
+    container_name: ecomdb-service
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD : toor1234
+#      MYSQL_USER : ecomapp
+      MYSQL_DATABASE : ecomdb
+    ports:
+      - 3306:3306
+    networks:
+      - backend-service-network
+    volumes:
+      - "C:\\ProgramData\\ecomdb-demo:/var/lib/mysql" #Map MySQl data dir on the host to the container
+  web:
+    depends_on:
+      - db
+    container_name: ecom-backend-service
+    image: "docker.io/library/ecomm-backend-app:latest"
+    environment:
+      PROFILE : default
+      DB_HOST : ecomdb-service
+      DB_PORT : 3306
+      DB_USER : root
+      DB_PASSWORD : toor1234
+      DB_NAME: ecomdb
+
+    ports:
+      - 8080:8080
+    networks:
+      - backend-service-network
+
+networks:
+  backend-service-network:
+
