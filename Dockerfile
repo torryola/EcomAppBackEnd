@@ -7,7 +7,7 @@ WORKDIR /app
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
 # Download and Install Dependencies into the image
-RUN ./mvnw dependency:resolve
+RUN sudo ./mvnw dependency:resolve
 # Copy src files
 COPY src ./src
 
