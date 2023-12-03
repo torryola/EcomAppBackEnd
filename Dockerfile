@@ -6,6 +6,9 @@ WORKDIR /app
 # Copy necessary Files
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
+
+# Make maven wrapper executable
+RUN chmod +x mvnw
 # Download and Install Dependencies into the image
 RUN ./mvnw dependency:resolve
 # Copy src files
