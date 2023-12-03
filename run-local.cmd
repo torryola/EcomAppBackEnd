@@ -1,1 +1,1 @@
-docker run --name ecomm-backend --publish 8080:8080 ecomm-backend-app
+docker run --rm -d --name ecomm-backend --publish 8080:8080 ecomm-backend-app
